@@ -1,0 +1,8 @@
+echo "Let's Build Docker Image"
+sleep 15
+docker build -t acharyaditiss/dhadkan .
+docker login -u acharyaditiss -p $password
+docker push acharyaditiss/dhadkan
+sleep 60
+ssh admin@172.31.36.107 "docker ps -a | grep 'mycontainer' && docker stop 'mycontainer' && docker rm 'mycontainer'"
+ssh admin@172.31.36.107 "docker pull acharyaditiss/dhadkan:latest && docker run --name 'mycontainer' -d -p 80:80 acharyaditiss/dhadkan"
