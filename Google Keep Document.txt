@@ -1,0 +1,27 @@
+﻿# sum_numbers.py
+a = int(input("Enter first number: "))
+b = int(input("Enter second number: "))
+c = int(input("Enter third number: "))
+print("Sum is:", a + b + c)
+
+
+# Dockerfile
+FROM python:3.9
+COPY sum_numbers.py /sum_numbers.py
+CMD ["python", "/sum_numbers.py"]
+
+
+docker build -t python-sum .
+docker run -it python-sum
+
+
+Tomcat Server with Modified Homepage
+
+
+# Dockerfile
+FROM tomcat:9.0
+COPY *  /usr/local/tomcat/webapps/ROOT/index.html
+
+
+docker build -t custom-tomcat .
+docker run -d -p 8080:8080 custom-tomcat
